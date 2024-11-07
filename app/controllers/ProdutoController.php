@@ -9,7 +9,7 @@ class ProdutoController {
     }
 
     public function buscarProduto($nome, $token) {
-        $tokenValido = "seu_token_secreto";
+        $tokenValido = "secreto";
 
         if ($token !== $tokenValido) {
             http_response_code(403);
