@@ -1,0 +1,104 @@
+/* Definindo as cores principais da paleta */
+.color1 { background-color: #e6eba9; }
+.color2 { background-color: #abbb9f; }
+.color3 { background-color: #6f8b94; }
+.color4 { background-color: #706482; }
+.color5 { background-color: #703d6f; }
+
+/* Estilizando a página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Título */
+h1 {
+    color: #703d6f;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Formulários e inputs */
+input, button {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+button {
+    background-color: #706482;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #703d6f;
+}
+
+/* Estilizando a div de resultado */
+#resultado {
+    background-color: #e6eba9;
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Estilo para o formulário de cadastro */
+form {
+    margin-top: 20px;
+    background-color: #abbb9f;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #6f8b94;
+}
+
+/* Estilizando os campos de cadastro */
+form input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Resposta de erro */
+#error {
+    color: red;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    input, button {
+        width: 100%;
+    }
+}
