@@ -2,12 +2,18 @@ $(document).ready(function() {
     $('#buscar').on('click', function() {
         var produto = $('#produto').val();
 
+        // Verificando se o campo do produto não está vazio
+        if (!produto) {
+            $('#resultado').html('<p>Por favor, insira o nome do produto.</p>');
+            return;
+        }
+
+        // Fazendo a requisição para a API usando GET
         $.ajax({
-            url: '/public/index.php',
-            method: 'GET',
+            url: '/app/controllers/ConsultaController.php',
+            method: 'GET',  // O método GET é utilizado aqui
             data: {
-                nome: produto,
-                token: 'secreto'
+                nome: produto
             },
             success: function(response) {
                 var data = JSON.parse(response);
@@ -17,8 +23,9 @@ $(document).ready(function() {
                     $('#resultado').html('<p>Preço: ' + data.preco + '</p><p>Última alteração: ' + data.data_ultima_alteracao + '</p>');
                 }
             },
-            error: function() {
-                $('#resultado').html('<p>Erro na requisição.</p>');
+            error: function(xhr, status, error) {
+                $('#resultado').html('<p>Erro na requisição: ' + error + '</p>');
+                console.log("Erro:", error);
             }
         });
     });
