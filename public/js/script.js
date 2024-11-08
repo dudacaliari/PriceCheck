@@ -1,19 +1,14 @@
 $(document).ready(function() {
+    // Função para buscar o preço do produto
     $('#buscar').on('click', function() {
         var produto = $('#produto').val();
 
-        // Verificando se o campo do produto não está vazio
-        if (!produto) {
-            $('#resultado').html('<p>Por favor, insira o nome do produto.</p>');
-            return;
-        }
-
-        // Fazendo a requisição para a API usando GET
         $.ajax({
-            url: '/app/controllers/ConsultaController.php',
-            method: 'GET',  // O método GET é utilizado aqui
+            url: '/public/index.php',
+            method: 'GET',
             data: {
-                nome: produto
+                nome: produto,
+                token: 'secreto'
             },
             success: function(response) {
                 var data = JSON.parse(response);
@@ -23,9 +18,35 @@ $(document).ready(function() {
                     $('#resultado').html('<p>Preço: ' + data.preco + '</p><p>Última alteração: ' + data.data_ultima_alteracao + '</p>');
                 }
             },
-            error: function(xhr, status, error) {
-                $('#resultado').html('<p>Erro na requisição: ' + error + '</p>');
-                console.log("Erro:", error);
+            error: function() {
+                $('#resultado').html('<p>Erro na requisição.</p>');
+            }
+        });
+    });
+
+    // Função para cadastrar o novo produto
+    $('#formCadastroProduto').on('submit', function(e) {
+        e.preventDefault();
+        var nomeProduto = $('#nomeProduto').val();
+        var precoProduto = $('#precoProduto').val();
+
+        $.ajax({
+            url: '/public/index.php', // A URL para processar a requisição POST
+            method: 'POST',
+            data: {
+                nomeProduto: nomeProduto,
+                precoProduto: precoProduto
+            },
+            success: function(response) {
+                var data = JSON.parse(response);
+                if (data.sucesso) {
+                    alert(data.sucesso);
+                } else if (data.erro) {
+                    alert(data.erro);
+                }
+            },
+            error: function() {
+                alert('Erro ao cadastrar o produto.');
             }
         });
     });

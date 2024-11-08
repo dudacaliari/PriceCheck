@@ -18,4 +18,15 @@ class Produto {
         }
         return null;
     }
+
+    // Método para adicionar um novo produto
+    public function adicionarProduto($nome, $preco) {
+        $nomeSeguro = $this->conn->real_escape_string($nome);
+        $sql = "INSERT INTO produtos (nome, preco, data_ultima_alteracao) VALUES ('$nomeSeguro', '$preco', NOW())";
+
+        if ($this->conn->query($sql)) {
+            return true;
+        }
+        return false;
+    }
 }
